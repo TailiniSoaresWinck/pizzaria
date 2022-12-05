@@ -45,7 +45,7 @@ if($_SESSION['perm']!=1){
                                     <input type="hidden" name="id" value="<?=$pizza["id"];?>">
                                     <select name="status" class="form-control status-input">
                                         <?php foreach($status as $s):?>
-                                            <option value="<?=$s["id"];?>" <?php if($s["id"]==$pizza["status"]); ?>><?=utf8_encode($s["tipo"]);?></option>
+                                             <option value="<?= $s["id"] ?>" <?php echo ($s["id"] == $pizza["status"]) ? "selected" : ""; ?> ><?= $s["tipo"] ?></option>
                                         <?php endforeach;?>
                                     </select>
                                     <button type="submit" class="update-btn">
