@@ -14,11 +14,12 @@ $metodo = $_SERVER["REQUEST_METHOD"];
 if($metodo==="POST"){
 
 if($type==="login"){
-    $query = $conn->query("SELECT * FROM pizzaria.user WHERE email = '".$email."' AND senha  = '".$password."'");
+    $query = $conn->query("SELECT * FROM pizzaria.user WHERE email = '$email' AND senha  = md5($password)");
     if($query->rowCount()>0){
         $_SESSION['cliente'] = "ok";
         foreach($query as $dados){
             $_SESSION['perm'] = $dados['permissao'];
+            $_SESSION['id'] = $dados['id'];
         }
         header('Location:../public/home.php');
     }else{
@@ -39,7 +40,7 @@ if($type==="login"){
 else if($type==="cadastro_cliente"){
     $query = $conn->query("SELECT * FROM pizzaria.user WHERE email = '".$email."'");
     if($query->rowCount()<=0){
-        $query = $conn->query("INSERT INTO pizzaria.user (email, senha, permissao) VALUES ('".$email."', '".$password."', 0)");
+        $query = $conn->query("INSERT INTO pizzaria.user (email, senha, permissao) VALUES ('$email', md5($password), 0)");
         //retorna para o login com mensagem de cadastro com sucesso
         $_SESSION["msg"]="Cadastrado com sucesso!";
         $_SESSION["status"]="success";

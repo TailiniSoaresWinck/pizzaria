@@ -1,6 +1,6 @@
 <?php
 session_start();
-$hostDatabase = 'localhost';
+$hostDatabase = 'localhost:33';
 $userDatabase = 'root';
 $passwordDatabase = '';
 $nameDatabase = 'pizzaria';

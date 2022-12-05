@@ -25,7 +25,7 @@ if($metodo === "GET"){
             '.$borda.',
             '.$massa.'
         )');
-
+        
         //resgatando id da ultima pizza inserida
 
         $pizzaId = $conn->lastInsertId();
@@ -35,11 +35,19 @@ if($metodo === "GET"){
         $query = $conn->prepare('INSERT INTO pizzaria.pizza_sabor (pizza_id, sabor_id) VALUES (
             :pizza, :sabor
         )');
+
+        foreach($sabores as $sabor){
+            $query->bindParam(':pizza', $pizzaId);
+            $query->bindParam(':sabor', $sabor);
+            $query->execute();
+        }
         //inserindo pedido
-        $statusId = 1;
-        $query = $conn->query('INSERT INTO pizzaria.pedidos (pizza_id, status_id) VALUES (
+        $idUser = $_SESSION['id'];
+        $statusId = 4;
+        $query = $conn->query('INSERT INTO pizzaria.pedidos (pizza_id, status_id, user_id) VALUES (
             '.$pizzaId.',
-            '.$statusId.'
+            '.$statusId.',
+            '.$idUser.'
         )');
 
         //mensagem de sucesso e voltar para pedidos

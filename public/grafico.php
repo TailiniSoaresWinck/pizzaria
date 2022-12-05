@@ -10,7 +10,7 @@ if($_SESSION['perm']!=1){
 <br>
 <br>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<div class="row align-items-center" style="display:inline-block;">
+<div class="row align-items-center">
     <div class="col-6">
       <h3 style="text-align: center;">Gráfico das Bordas</h3>
     <script type="text/javascript">
@@ -55,7 +55,7 @@ if($_SESSION['perm']!=1){
         data.addRows([
           ['Normal', <?php echo $_SESSION['massaNormal'] ?>],
           ['Temperada', <?php echo $_SESSION['massaTemperada'] ?>],
-          ['Comum', <?php echo $_SESSION['massaComum'] ?>]
+          ['Integral', <?php echo $_SESSION['massaComum'] ?>]
         ]);
 
         // Set chart options
